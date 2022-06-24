@@ -74,6 +74,23 @@ public class UserRegistration {
 			System.out.println(mobileNumber + " is an Invalid Mobile Number");
 	}
 
+	public static void checkValidPassword(String password) {
+
+		boolean isPassword;
+		String passwordRegex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$";
+		Pattern patternObject = Pattern.compile(passwordRegex);
+		if (password == null) {
+			isPassword = false;
+		}
+		Matcher matcherObject = patternObject.matcher(password);
+		isPassword = matcherObject.matches();
+
+		if (isPassword)
+			System.out.println(password + " is a Valid  Password");
+		else
+			System.out.println(password + " is an Invalid Password");
+	}
+
 	public static void main(String[] args) {
 
 		Scanner scannerObject = new Scanner(System.in);
@@ -92,10 +109,15 @@ public class UserRegistration {
 		String email = scannerObject.next();
 		checkValidEmail(email);
 		System.out.println();
-		
+
 		System.out.println("Enter Your Mobile Number");
 		String mobileNumber = scannerObject.next();
 		checkValidMobileNumber(mobileNumber);
+		System.out.println();
+
+		System.out.println("Enter Your Password");
+		String password = scannerObject.next();
+		checkValidPassword(password);
 		System.out.println();
 
 		scannerObject.close();
